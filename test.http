@@ -1,0 +1,19 @@
+@baseURL=http://localhost:4004/NorthWind
+
+### Insert
+POST {{baseURL}}/Products
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+    "Name": "Tuna",
+    "Description": "Raw Tuna",
+    "ReleaseDate": "1992-01-01T00:00:00Z",
+    "DiscontinuedDate": null,
+    "Rating": 4,
+    "Price": "2.5"
+}
+
+###  Read
+GET {{baseURL}}/Products/11
+Content-Type: application/json;IEEE754Compatible=true
+

@@ -1,26 +1,30 @@
 {
-	"name": "cap-samples",
-	"version": "1.0.0",
-	"description": "A simple CAP project.",
-	"repository": "<Add your repository here>",
-	"license": "UNLICENSED",
-	"private": true,
-	"dependencies": {
-		"@sap/cds": "^3",
-		"express": "^4",
-		"@sap/hana-client": "^2.5.86"
-	},
-	"scripts": {
-		"start": "npx cds run"
-	},
-	"cds": {
-		"requires": {
-			"db": {
-				"kind": "hana"
-			}
-		}
-	},
-	"devDependencies": {
-		"sqlite3": "^5.0.0"
-	}
+  "name": "cap-samples",
+  "version": "1.0.0",
+  "description": "A simple CAP project.",
+  "repository": "<Add your repository here>",
+  "license": "UNLICENSED",
+  "private": true,
+  "dependencies": {
+    "@sap/cds": "^5",
+    "express": "^4",
+    "hdb": "^0.18.3"
+  },
+  "scripts": {
+    "start": "cds run"
+  },
+  "cds": {
+    "requires": {
+      "db": {
+        "kind": "hana"
+      }
+    },
+    "hana": {
+      "deploy-format": "hdbtable"
+    }
+  },
+  "devDependencies": {
+    "@sap/hdi-deploy": "^4.2.3",
+    "sqlite3": "^5.0.0"
+  }
 }
