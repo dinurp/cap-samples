@@ -1,14 +1,17 @@
 @baseURL=http://localhost:4004/NorthWind
 
 ### Insert
+@lastYear={{$localDatetime iso8601 -1 y}}
+@today={{$localDatetime iso8601}}
+@nextYear={{$localDatetime iso8601 1 y}}
 POST {{baseURL}}/Products
 Content-Type: application/json;IEEE754Compatible=true
 
 {
     "Name": "Tuna",
-    "Description": "Raw Tuna",
-    "ReleaseDate": "1992-01-01T00:00:00Z",
-    "DiscontinuedDate": null,
+    "Description": "Raw Tuna {{today}}",
+    "ReleaseDate": "{{lastYear}}",
+    "DiscontinuedDate": "{{nextYear}}",
     "Rating": 4,
     "Price": "2.5"
 }
