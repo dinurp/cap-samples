@@ -14,6 +14,6 @@ Content-Type: application/json;IEEE754Compatible=true
 }
 
 ###  Read
-GET {{baseURL}}/Products/11
+GET {{baseURL}}/Products?$filter=Name eq 'Tuna'
 Content-Type: application/json;IEEE754Compatible=true
 

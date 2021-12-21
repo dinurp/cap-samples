@@ -1,5 +1,6 @@
 entity Products {
-    key ID               : Integer;
+    key UUID             : UUID @cds.on.insert: $uuid;
+        ID               : Integer @Core.Computed;
         Name             : String;
         Description      : String;
         ReleaseDate      : DateTime;
