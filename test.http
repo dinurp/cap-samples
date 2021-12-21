@@ -1,9 +1,11 @@
+# uses httpYac syntax
 @baseURL=http://localhost:4004/NorthWind
 
-### Insert
+### Insert a Tuna
 @lastYear={{$localDatetime iso8601 -1 y}}
 @today={{$localDatetime iso8601}}
 @nextYear={{$localDatetime iso8601 1 y}}
+# @name Tuna
 POST {{baseURL}}/Products
 Content-Type: application/json;IEEE754Compatible=true
 
@@ -16,7 +18,81 @@ Content-Type: application/json;IEEE754Compatible=true
     "Price": "2.5"
 }
 
-###  Read
-GET {{baseURL}}/Products?$filter=Name eq 'Tuna'
+### Update Salmon's Price
+PATCH {{baseURL}}/Products/{{Tuna.UUID}}
 Content-Type: application/json;IEEE754Compatible=true
+
+{
+    "Price": "3.5"
+}
+
+### Update Salmon's ID
+# ID cannot be updated, request is ignored
+PATCH {{baseURL}}/Products/{{Tuna.UUID}}
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+    "ID": 1000
+}
+
+### Delete the newly posted Tuna
+DELETE {{baseURL}}/Products/{{Tuna.UUID}}
+
+
+###  Read Tunas
+# @name Tunas
+GET {{baseURL}}/Products?$filter=Name eq 'Tuna'
+
+### Delete the first of the Tunas
+DELETE {{baseURL}}/Products/{{Tunas.value[0].UUID}}
+
+### Insert Salomn with External ID
+@lastYear={{$localDatetime iso8601 -1 y}}
+@today={{$localDatetime iso8601}}
+@nextYear={{$localDatetime iso8601 1 y}}
+
+# @name Salmon
+POST {{baseURL}}/Products
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+    "ID": 40003000,
+    "Name": "Salmon",
+    "Description": "Norwegian Salmon {{today}}",
+    "ReleaseDate": "{{lastYear}}",
+    "DiscontinuedDate": "{{nextYear}}",
+    "Rating": 4,
+    "Price": "9.5"
+}
+
+### Update Salmon's Price
+PATCH {{baseURL}}/Products/{{Salmon.UUID}}
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+    "Price": "11.5"
+}
+
+### Update Salmon's ID
+# ID cannot be updated, request is ignored
+PATCH {{baseURL}}/Products/{{Salmon.UUID}}
+Content-Type: application/json;IEEE754Compatible=true
+
+{
+    "ID": 40007000
+}
+
+### Read Salmon with ID
+# @name Salmons
+GET {{baseURL}}/Products?$filter=ID eq 40003000
+
+### Read Salmons
+# @name Salmons
+GET {{baseURL}}/Products?$filter=Name eq 'Salmon'
+
+### Delete
+DELETE {{baseURL}}/Products/{{Salmon.UUID}}
+
+### Delete
+DELETE {{baseURL}}/Products/{{Salmons.value[0].UUID}}
 

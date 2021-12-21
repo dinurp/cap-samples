@@ -3,8 +3,9 @@
 This based on the blog post [CAP: Using HANA DB Sequence](https://blogs.sap.com/2020/07/04/cap-using-hana-db-sequence/). This is enahanced with the following changes:
 - Migrated to CDS v 5.7 and HANA Cloud - HANA DB
 - UUID field added as the key
-- ID is a @core.computed field
-- ID is calculated in a trigger using a sequence
+- ID is a @core.Immutable field
+- ID is calculated if it is not provided in a trigger using a sequence
+- ID provided should be greater than 29999999, the max of the sequence; checked in trigger
 
 ## Additional Information
 - Tested in SAP Cloud Platform Cloud Foundry environment using trial account (SAP HANA Cloud - HANA DB)
